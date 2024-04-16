@@ -10,11 +10,12 @@
 <body>
     <div class="container mt-5 bg-dark p-3 rounded w-50">
         <div class="bg-secondary p-3">
-            <p class="text-white">Haz click aquí para entrenar tu modelo</p>
+            <p class="text-white" id="description">Haz click aquí para entrenar tu modelo</p>
             <button class="btn btn-primary" id="result">Entrenar</button>
         </div>
         <div class="bg-secondary p-3 mt-3">
-            <button class="btn btn-primary" id="predict">Predecir</button>
+            <input class="form-control w-50" type="number" placeholder="Introduzca el valor de X" id="numberPredict"></input>
+            <button class="btn btn-primary mt-3 mb-3" id="predict">Predecir</button>
             <div class="text-white" id="output_field"></div>
         </div>
     </div>

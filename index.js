@@ -1,6 +1,8 @@
+const model = tf.sequential()
+let trained = false
+
 async function learnLinear () {
 
-    const model = tf.sequential()
     model.add(tf.layers.dense({units: 1, inputShape: [1]}))
 
     model.compile({
@@ -12,9 +14,19 @@ async function learnLinear () {
     const ys = tf.tensor2d([-6, -4, -2, 0, 2, 4, 6, 8, 10], [9, 1])
 
     await model.fit(xs, ys, { epochs: 250 })
-
-    document.getElementById("output_field").innerHTML = 
-        model.predict(tf.tensor2d([20], [1, 1]))
+    trained = true
+    document.getElementById("description").innerText = "Modelo Entrenado Correctamente"
 }
 
+async function predict (num) {
+    if (trained) {
+        document.getElementById("output_field").innerHTML = 
+            "<p class='text-white'>Resultado: </p>" + model.predict(tf.tensor2d([num], [1, 1]))
+    } else {
+        alert("Modelo no Entrenado, entrenalo primero para poder predecir")
+    }
+}
+
+const numberPredict = document.getElementById("numberPredict")
 document.getElementById("result").addEventListener("click", learnLinear)
+document.getElementById("predict").addEventListener("click", () => predict(parseInt(numberPredict.value)))
