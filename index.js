@@ -21,7 +21,7 @@ async function learnLinear () {
 async function predict (num) {
     if (trained) {
         document.getElementById("output_field").innerHTML = 
-            "<p class='text-white'>Resultado: </p>" + model.predict(tf.tensor2d([num], [1, 1]))
+            `<p class='text-white'>Resultado de x=${num} es: ${model.predict(tf.tensor2d([num], [1, 1])).dataSync()[0]}</p>`
     } else {
         alert("Modelo no Entrenado, entrenalo primero para poder predecir")
     }
